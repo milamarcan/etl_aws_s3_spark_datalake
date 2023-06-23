@@ -38,7 +38,9 @@ The result tables look like in the following screenshots:
 ![Users table for ETL AWS Sparkify project](/img/3_users_table.jpg)
 
 2.2. Time table:
+
 ![Time table for ETL AWS Sparkify project](/img/4_time_table.jpg)
 
 3. Songplays table:
+
 ![Songplays table for ETL AWS Sparkify project](/img/5_songplays_table.jpg)
