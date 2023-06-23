@@ -21,26 +21,27 @@ In the terminal window, run 'etl.py' file (e.g. `python etl.py`)
 
 ## Project results
 The result tables look like in the following screenshots:
-1. Songs input file: 
 
-1.1. Songs table:
+1. Songs input file, songs table:
 
 ![Songs table for ETL AWS Sparkify project](/img/1_songs_table.jpg)
 
-1.2. Artists table:
+
+2. Songs input file, artists table:
 
 ![Artists table for ETL AWS Sparkify project](/img/2_artists_table.jpg)
 
-2. Logs input file:
 
-2.1. Users table:
+3. Logs input file, users table:
 
 ![Users table for ETL AWS Sparkify project](/img/3_users_table.jpg)
 
-2.2. Time table:
+
+4. Logs input file, time table:
 
 ![Time table for ETL AWS Sparkify project](/img/4_time_table.jpg)
 
-3. Songplays table:
+
+5. Songplays table:
 
 ![Songplays table for ETL AWS Sparkify project](/img/5_songplays_table.jpg)
