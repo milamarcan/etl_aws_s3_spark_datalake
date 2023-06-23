@@ -17,19 +17,23 @@ A music streaming startup, Sparkify, has grown their user base and song database
 - In 'dl.cfg' file, fill input and output data paths, and also AWS user credentials (user should have full access to S3 buckets that will be used)
 
 ## How to run the project
-In the terminal window, run 'etl.py' file (`python etl.py`)
+In the terminal window, run 'etl.py' file (e.g. `python etl.py`)
 
 ## Project results
 The result tables look like in the following screenshots:
 1. Songs input file: 
 1.1. Songs table:
 ![Songs table for ETL AWS Sparkify project](/img/1_songs_table.jpg)
+
 1.2. Artists table:
 ![Artists table for ETL AWS Sparkify project](/img/2_artists_table.jpg)
+
 2. Logs input file:
 2.1. Users table:
 ![Users table for ETL AWS Sparkify project](/img/3_users_table.jpg)
+
 2.2. Time table:
 ![Time table for ETL AWS Sparkify project](/img/4_time_table.jpg)
+
 3. Songplays table:
 ![Songplays table for ETL AWS Sparkify project](/img/5_songplays_table.jpg)
