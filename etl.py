@@ -54,10 +54,6 @@ def process_song_data(spark, input_data, output_data):
     songs_table = spark.sql("""
     select song_id, title, artist_id, year, duration from df_songs_table order by title
 """)
-    # print("++ SONGS TABLE ++")
-    # songs_table.printSchema()
-    # print("** SONGS TABLE EXTRACT **")
-    # songs_table.show(5, truncate=False)
 
     # write songs table to parquet files partitioned by year and artist
     songs_table_path = output_data + "songs_table.parquet"
@@ -70,10 +66,6 @@ def process_song_data(spark, input_data, output_data):
     artists_table = spark.sql("""
         SELECT artist_id, artist_name AS name, artist_location AS location, artist_latitude AS latitude, artist_longitude AS longitude FROM df_artists_table order by name desc
     """)
-    # print("// ARTISTS TABLE //")
-    # artists_table.printSchema()
-    # print("/// ARTISTS TABLE EXTRACT ///")
-    # artists_table.show(5, truncate=False)
 
     # write artists table to parquet files
     artists_table_path = output_data + "artists_table.parquet"
@@ -111,10 +103,6 @@ def process_log_data(spark, input_data, output_data):
     users_table = spark.sql("""
         SELECT DISTINCT userId AS user_id, firstName AS first_name, lastName AS last_name, gender, level FROM df_users_table ORDER BY last_name
     """)
-    # print("-+- USERS TABLE -+-")
-    # users_table.printSchema()
-    # print("-++- USERS TABLE EXTRACT -++-")
-    # users_table.show(5, truncate=False)
 
     # write users table to parquet files
     users_table_path = output_data + "users_table.parquet"
@@ -126,17 +114,9 @@ def process_log_data(spark, input_data, output_data):
         x/1000).strftime('%Y-%m-%d %H:%M:%S'))
     df_filtered = df_filtered.withColumn('timestamp', get_timestamp("ts"))
 
-    # print("LOGS WITH TIMESTAMP")
-    # df_filtered.printSchema()
-    # df_filtered.show(5)
-
     # create datetime column from original timestamp column
     get_datetime = udf(lambda x: str(datetime.fromtimestamp(int(x) / 1000.0)))
     df_filtered = df_filtered.withColumn("datetime", get_datetime("ts"))
-
-    # print("LOGS WITH DATESTAMP")
-    # df_filtered.printSchema()
-    # df_filtered.show(5)
 
     # extract columns to create time table
     df_filtered.createOrReplaceTempView("df_time_table")
@@ -152,10 +132,6 @@ def process_log_data(spark, input_data, output_data):
         ORDER BY start_time
 
     """)
-    # print("-//- TIME TABLE -//-")
-    # time_table.printSchema()
-    # print("-///- TIME TABLE EXTRACT -///-")
-    # time_table.show(5, truncate=False)
 
     # write time table to parquet files partitioned by year and month
     time_table_path = output_data + "time_table.parquet"
@@ -171,10 +147,6 @@ def process_log_data(spark, input_data, output_data):
     song_log_joined_df = df_filtered.join(df_songs, (df_filtered.song == df_songs.title)
                                           & (df_filtered.artist == df_songs.artist_name)
                                           & (df_filtered.length == df_songs.duration), how="inner")
-    # print("********* @ *********")
-    # song_log_joined_df.printSchema()
-    # print("********* @@ *********")
-    # song_log_joined_df.show(5)
 
     # extract columns from joined song and log datasets to create songplays table
     song_log_joined_df.createOrReplaceTempView("df_songplays_table")
@@ -193,11 +165,6 @@ def process_log_data(spark, input_data, output_data):
     """)
     songplays_table = songplays_table.withColumn(
         "songplay_id", monotonically_increasing_id())
-
-    # print("********* SONGPLAYS TABLE *********")
-    # songplays_table.printSchema()
-    # print("********* SONGPLAYS TABLE EXTRACT *********")
-    # songplays_table.show(5, truncate=False)
 
     # write songplays table to parquet files partitioned by year and month
     songplays_table_path = output_data + "songplays_table.parquet"
