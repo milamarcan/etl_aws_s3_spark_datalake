@@ -182,8 +182,8 @@ def main():
     Returns: None
     """
     spark = create_spark_session()
-    input_data = config["AWS"]["INPUT_DATA"]
-    output_data = config["AWS"]["OUTPUT_DATA"]
+    input_data = config["LOCAL"]["INPUT_DATA"]
+    output_data = config["LOCAL"]["OUTPUT_DATA"]
 
     process_song_data(spark, input_data, output_data)
     process_log_data(spark, input_data, output_data)
