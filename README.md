@@ -10,6 +10,7 @@ A music streaming startup, Sparkify, has grown their user base and song database
 - etl.py reads data from S3, processes that data using Spark, and writes them back to S3
 - dl.cfg contains AWS credentials
 - img folder contains an image for the current file
+- data folder contains data for the easy preview of the functionality
 
 # Running the project
 ## Pre-requisites
