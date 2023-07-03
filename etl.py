@@ -10,8 +10,9 @@ from pyspark.sql.functions import year, month, dayofmonth, hour, weekofyear, dat
 config = configparser.ConfigParser()
 config.read('dl.cfg')
 
-os.environ['AWS_ACCESS_KEY_ID'] = config["AWS"]['AWS_ACCESS_KEY_ID']
-os.environ['AWS_SECRET_ACCESS_KEY'] = config["AWS"]['AWS_SECRET_ACCESS_KEY']
+# Use these variables only when your data is in S3
+#os.environ['AWS_ACCESS_KEY_ID'] = config["AWS"]['AWS_ACCESS_KEY_ID']
+#os.environ['AWS_SECRET_ACCESS_KEY'] = config["AWS"]['AWS_SECRET_ACCESS_KEY']
 
 
 def create_spark_session():
@@ -42,7 +43,7 @@ def process_song_data(spark, input_data, output_data):
     - artists_table: directory with artists parquet files that were created during ETL process
     """
     # get filepath to song data file
-    song_data = input_data + "song_data/A/A/*/*.json"
+    song_data = input_data + "song_data/*/*/*/*.json"
 
     # read song data file
     df = spark.read.json(song_data)
@@ -140,7 +141,7 @@ def process_log_data(spark, input_data, output_data):
 
     # --- ALL TOGETHER: SONGPLAYS TABLE ---
     # read in song data to use for songplays table
-    song_data = input_data + "song_data/A/A/*/*.json"
+    song_data = input_data + "song_data/*/*/*/*.json"
     df_songs = spark.read.json(song_data)
 
     # join song_df and log_df
