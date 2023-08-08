@@ -3,6 +3,9 @@
 ## Assignment
 A music streaming startup, Sparkify, has grown their user base and song database and want to move their data warehouse to a data lake. You are tasked with building an ETL pipeline that extracts their data from S3, processes them using Spark, and loads the data back into S3 as a set of dimensional tables. This will allow their analytics team to continue finding insights in what songs their users are listening to.
 
+## High-level architecture of the project
+![Project architecture](/img/Sparkify_architecture.jpg)
+
 ## Logical Data Model for the project
 ![Data Model for ETL AWS Sparkify project](/img/DataLake.jpg)
 
